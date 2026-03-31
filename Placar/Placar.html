@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placar de jogo</title>
+    <link rel="stylesheet" href="Placar.CSS">
+</head>
+<body>
+<header>
+    Placar de Jogo
+</header>
+
+<main>
+    <section>
+        <h1>Placar</h1>
+
+        <label>Time A</label>
+        <input type="text" id="timeA" placeholder="Nome do time">
+
+        <label>Time B</label>
+        <input type="text" id="timeB" placeholder="Nome do time">
+
+        <div class="resultado">
+            <p>
+                <strong id="nomeA">Time A</strong> 
+                <span id="pontosA">0</span> x 
+                <span id="pontosB">0</span> 
+                <strong id="nomeB">Time B</strong>
+            </p>
+        </div>
+
+        <button onclick="somarA()">+1 Time A</button>
+        <button onclick="somarB()">+1 Time B</button>
+        <button onclick="somarAminus()">-1 Time A</button>
+        <button onclick="somarBminus()">-1 Time B</button>
+        <button onclick="resetar()">Resetar</button>
+    </section>
+</main>
+
+<footer id="footer">
+    <span id="mensagem">Inicie o jogo</span>
+</footer>
+<script src="Placar.JS"></script>
+
+</body>
