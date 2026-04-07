@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estacionamento</title>
+    <link rel="stylesheet" href="Estacionamento.CSS">
+
+</head>
+
+<body>
+
+    <header>
+        Estacionamento
+    </header>
+
+    <main>
+        <section>
+            <h1>Preço do Estacionamento</h1>
+
+            <label for="VeiculoTeste" id="VeiculoTeste">Veículo Grande</label>
+            <input type="checkbox" id="VeiculoTeste">
+            <br>
+            <label for="VeiculoTesteTwo" id="VeiculoTesteTwo">Cliente Frequente</label>
+            <input type="checkbox" id="VeiculoTesteTwo">
+            <br>
+            <label for="inputTempo" id="inputTempo">Quantas horas:</label>
+            <input type="number" id="inputTempo">
+            <br>
+            <button onclick="funcaoTempo()">Calcular o preço</button>
+
+            <div class="resultado">
+                <p><strong>Total:</strong> <span id="respTempo">0</span></p>
+
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <span id="mensagem">Preencha os valores para calcular</span>
+    </footer>
+
+    <script src="Estacionamento.js"></script>
+
+</body>
+
+</html>
