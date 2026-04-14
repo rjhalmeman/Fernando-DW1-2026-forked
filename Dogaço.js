@@ -1,10 +1,10 @@
 function funcaoDelicia() {
 
-    let basico = parseFloat(document.getElementById("HotDogBase").value;
-    let duplo = parseFloat(document.getElementById("HotDogDouble").value;
-    let salada = parseFloat(document.getElementById("Xsalada").value);
-    let R350mL = parseFloat(document.getElementById("Refri350ml").value;
-    let R1L = parseFloat(document.getElementById("Refri1L").value);
+    let basico = parseFloat(document.getElementById("HotDogBase")).value;
+    let duplo = parseFloat(document.getElementById("HotDogDouble")).value;
+    let salada = parseFloat(document.getElementById("Xsalada")).value);
+    let R350mL = parseFloat(document.getElementById("Refri350ml")).value;
+    let R1L = parseFloat(document.getElementById("Refri1L")).value);
 
     let basicoT = (basico * 22.00);
     let duploT = (duplo * 26.00);
