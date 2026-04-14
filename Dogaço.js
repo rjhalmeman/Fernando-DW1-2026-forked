@@ -21,7 +21,7 @@ let total = basicoT + duploT + saladaT + R350mlT + R1LT;
         document.getElementById("respTotal").innerHTML = "-";
     }else if (basicoT < 0 || duploT < 0 || saladaT < 0 || R350mlT < 0 || R1LT < 0 || ) {
         footer.classList.add("erro");
-        mensagem.innerHTML = " VAI TOMAR NO CU " ;
+        mensagem.innerHTML = " é sério RADAMES" ;
         document.getElementById("respTotal").innerHTML = "-";
     } 
 
