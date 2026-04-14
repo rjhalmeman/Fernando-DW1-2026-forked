@@ -1,9 +1,9 @@
 function funcaoDelicia() {
 
-    let basico = document.getElementById("HotDogBase").value;
-    let duplo = document.getElementById("HotDogDouble").value;
+    let basico = parseFloat(document.getElementById("HotDogBase").value;
+    let duplo = parseFloat(document.getElementById("HotDogDouble").value;
     let salada = parseFloat(document.getElementById("Xsalada").value);
-    let R350mL = document.getElementById("Refri350ml").value;
+    let R350mL = parseFloat(document.getElementById("Refri350ml").value;
     let R1L = parseFloat(document.getElementById("Refri1L").value);
 
     let basicoT = (basico * 22.00);
@@ -21,10 +21,8 @@ let total = basicoT + duploT + saladaT + R350mlT + R1LT;
         document.getElementById("respTotal").innerHTML = "-";
     }else if (total < 0) {
         footer.classList.add("erro");
-        mensagem.innerHTML = "VAI TOMAR BEM NO MEIO DO OLHO DO SEU C*";
+        mensagem.innerHTML = " VAI TOMAR NO CU " ;
         document.getElementById("respTotal").innerHTML = "-";
-    }else if (total < 0) {
-        
     } else if (total > 0) {
 
          mensagem.innerHTML = "Preço total";
