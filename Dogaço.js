@@ -15,7 +15,7 @@ function funcaoDelicia() {
 
 let total = basicoT + duploT + saladaT + R350mlT + R1LT;
 
-    if (total === 0) {
+    if (total === 0 || total < 0) {
         footer.classList.add("erro");
         mensagem.innerHTML = "PQ VC QUIS PEDIR EM PRIMEIRO LUGAR";
         document.getElementById("respTotal").innerHTML = "-";
