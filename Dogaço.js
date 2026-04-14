@@ -20,7 +20,7 @@ let total = basicoT + duploT + saladaT + R350mlT + R1LT;
         mensagem.innerHTML = "PQ VC QUIS PEDIR EM PRIMEIRO LUGAR";
         document.getElementById("respTotal").innerHTML = "-";
     } else if (total > 0) {
-        alert(total);
+
          mensagem.innerHTML = "Preço total";
         }
 
