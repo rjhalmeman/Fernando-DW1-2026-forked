@@ -15,6 +15,16 @@ function funcaoDelicia() {
 
 let total = basicoT + duploT + saladaT + R350mlT + R1LT;
 
+    if (basicoT === 0 || duploT === 0 || saladaT === 0 || R350mlT === 0 || R1LT === 0 || ) {
+        footer.classList.add("erro");
+        mensagem.innerHTML = "PQ VC QUIS PEDIR EM PRIMEIRO LUGAR";
+        document.getElementById("respTotal").innerHTML = "-";
+    }else if (basicoT < 0 || duploT < 0 || saladaT < 0 || R350mlT < 0 || R1LT < 0 || ) {
+        footer.classList.add("erro");
+        mensagem.innerHTML = " VAI TOMAR NO CU " ;
+        document.getElementById("respTotal").innerHTML = "-";
+    } 
+
     if (total === 0 ) {
         footer.classList.add("erro");
         mensagem.innerHTML = "PQ VC QUIS PEDIR EM PRIMEIRO LUGAR";
