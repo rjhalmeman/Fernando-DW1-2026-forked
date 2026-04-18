@@ -32,19 +32,25 @@
             let valorA = parseFloat(document.getElementById("inputA").value);
             let valorB = parseFloat(document.getElementById("inputB").value);
             let valorC = parseFloat(document.getElementById("inputC").value);
-            let resp = " ";
-            if (valorA < valorB < valorC) {
-                resp = "primeiro, " + valorA + " segundo, " + valorB + " último, " + valorC;
-            } else if (valorA < valorC && valorC < valorB) {
-                resp = "primeiro, " + valorA + " segundo, " + valorC + " último, " + valorB;
-            } else {
-                resp = 2;
+            let aux=0;
+            if (valorA > valorB) {
+                aux = a;
+                b = a;
+                b = aux;
+                
+            } if (valorB > valorC) {
+                 aux = b;
+                c = b;
+                c = aux;
+                
+            } if (valorA > valorB) {
+                aux = a;
+                b = a;
+                b = aux;
+               
             }
 
-
-
-            document.getElementById("resposta").innerHTML = resp;
-            console.log(" o resultado do resp é " + resp);
+            console.log(" o resultado do resp é " + a + " " + b + " " + c);
         }
     </script>
 </body>
