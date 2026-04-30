@@ -1,0 +1,138 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fundo da página */
+body {
+    font-family: "Georgia", "Times New Roman", serif;
+    background: #e5e5e5;
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+/* Container principal */
+#documento-container {
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Folha estilo certificado */
+#folha {
+    background: #fffdf7;
+    padding: 60px 50px;
+    border: 8px double #2c3e50;
+    box-shadow: 0 0 25px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+/* Marca d’água sutil */
+#folha::before {
+    content: "CERTIFICADO";
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-25deg);
+    font-size: 80px;
+    color: rgba(0,0,0,0.03);
+    letter-spacing: 10px;
+}
+
+/* Título */
+header h1 {
+    text-align: center;
+    font-size: 28px;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    color: #2c3e50;
+    text-transform: uppercase;
+}
+
+/* Conteúdo */
+#conteudo-documento p {
+    font-size: 18px;
+    line-height: 1.8;
+    text-align: justify;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Destaque dos dados preenchidos */
+.dado-preenchido {
+    font-weight: bold;
+    color: #000;
+    border-bottom: 1px dashed #555;
+    padding: 0 5px;
+}
+
+.dado-destaque {
+    font-weight: bold;
+    color: #8e44ad;
+    text-transform: uppercase;
+}
+
+/* Rodapé */
+footer {
+    margin-top: 60px;
+    text-align: center;
+}
+
+footer .linha {
+    width: 300px;
+    height: 1px;
+    background: #000;
+    margin: 0 auto 10px auto;
+}
+
+footer p {
+    font-size: 14px;
+}
+
+/* Botões */
+.acoes {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-acao {
+    padding: 12px 20px;
+    border: none;
+    background: #2c3e50;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn-acao:hover {
+    background: #1a252f;
+}
+
+.btn-imprimir {
+    background: #27ae60;
+}
+
+.btn-imprimir:hover {
+    background: #1e8449;
+}
+
+/* Ajuste para impressão */
+@media print {
+    body {
+        background: none;
+        padding: 0;
+    }
+
+    .acoes {
+        display: none;
+    }
+
+    #folha {
+        box-shadow: none;
+        border: 4px double #000;
+    }
+}

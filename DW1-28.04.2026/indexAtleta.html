@@ -10,7 +10,7 @@
 
     <h1>Cadastro de Usuário</h1>
 
-    <form action="DestinoAtleta.html" method="GET" onsubmit="return validarFormulario()">
+    <form action="AutorizacaoAtleta.html" method="GET" onsubmit="return validarFormulario()">
 
         <label for="nome">Nome completo:</label>
         <input type="text" id="nome" name="nome" required>
@@ -30,54 +30,51 @@
         <label for="destino">Cidade de Destino:</label>
         <input type="text" id="destino" name="destino" required>
         <br><br>
-        <div class="dropdown">
-            <button class="dropbtn">Modalidade Esportiva:</button>
-            <div class="dropdown-content">
-                <a href="#">Futebol</a>
-                <a href="#">Vôlei</a>
-                <a href="#">Basquete</a>
-            </div>
-        </div>
+
+        <label for="esporte">Modalidade esportiva:</label>
+        <select id="esporte" name="esporte">
+            <option value="futebol">Futebol</option>
+            <option value="volei">Vôlei</option>
+            <option value="natacao">Natação</option>
+        </select>
+
         <br><br>
         <button type="submit">Enviar Dados</button>
     </form>
 
-    <script>
-        // Função didática para validar se o CPF tem algo digitado antes de enviar
-        function validarFormulario() {
-            // Pega o valor que foi digitado no campo CPF
-            var cpfDigitado = document.getElementById('cpf').value;
-            var nomeDigitado = document.getElementById('nome').value;
-            var idadeDigitado = document.getElementById('idade').value;
-            var responsaDigitado = document.getElementById('acomp').value;
-            var origemDigitado = document.getElementById('origem').value;
-            var destinoDigitado = document.getElementById('destino').value;
-            var modalidadeDigitado = document.getElementById('esporte').value;
+<script>
+function validarFormulario() {
+    var cpf = document.getElementById('cpf').value;
+    var idade = parseInt(document.getElementById('idade').value);
+    var categoria = "";
 
-            // Uma validação simples: se tiver menos de 11 caracteres, avisa e bloqueia o envio
-            if (cpfDigitado.length < 11) {
-                alert("Por favor, digite um CPF válido com pelo menos 11 números.");
-                return false; // O 'false' impede que o formulário vá para a outra página
-            }
-            if (idadeDigitado < 7){
-                alert("Infelizmente, você não tem idade suficiente para participar da competição");
-            }
-            else if (idadeDigitado >= 7 && idadeDigitado <= 11){
-                alert("Infantil");
-            }
-            if (idadeDigitado >= 12 && idadeDigitado <= 13){
-                alert("Pré-Adolescente");
-            }
-            if (idadeDigitado >= 14 && idadeDigitado <= 18){
-                alert("Categoria Adolescente");
-            }
-            if (idadeDigitado > 18){
-                alert("Infelizmente, você não pode participar da competição por ser maior de 18");
-            }
+    if (cpf.length != 11) {
+        alert("CPF inválido");
+        return false;
+    }
 
-                return true; // O 'true' libera o envio para a página "destinoAtleta.html"
-        }
-    </script>
+    if (idade < 7) {
+        alert("Idade insuficiente");
+        return false;
+    }
+
+    if (idade <= 11) {
+        categoria = "Infantil";
+    } else if (idade <= 13) {
+        categoria = "Pré-Adolescente";
+    } else if (idade <= 18) {
+        categoria = "Adolescente";
+    } else {
+        alert("Maior de idade não permitido");
+        return false;
+    }
+
+    // 🔥 Aqui está o segredo
+    document.getElementById('categoria').value = categoria;
+
+    return true;
+}
+</script>
 
 </body>
 

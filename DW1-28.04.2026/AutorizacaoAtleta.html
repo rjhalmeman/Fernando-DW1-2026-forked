@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autorização de Viagem Esportiva</title>
+    <link rel="stylesheet" href="AutorizacaoAtleta.CSS">
+</head>
+<body>
+    <article id="documento-container">
+        <div id="folha">
+            <header>
+                <h1>AUTORIZAÇÃO DE VIAGEM ESPORTIVA</h1>
+            </header>
+
+            <section id="conteudo-documento">
+                <p>
+                    Eu, <span id="resultadoAtleta" class="dado-preenchido"></span>, assumo a responsabilidade e 
+                    <strong>AUTORIZO</strong> o(a) atleta <span id="resultadoNome" class="dado-preenchido"></span>, 
+                    portador(a) do CPF <span id="resultadoCpf" class="dado-preenchido"></span>, com 
+                    <span id="resultadoIdade" class="dado-preenchido"></span> anos de idade, a realizar a viagem da 
+                    cidade de <span id="resultadoOrigem" class="dado-preenchido"></span> para a cidade de 
+                    <span id="resultadoDestino" class="dado-preenchido"></span>.
+                </p>
+                <p>
+                    A referida viagem tem como finalidade a participação no torneio juvenil oficial, onde o(a) atleta 
+                    competirá na modalidade esportiva de <span id="resultadoModali" class="dado-preenchido"></span>, 
+                    enquadrando-se oficialmente na categoria <span id="resultadoCategoria" class="dado-destaque"></span>.
+                </p>
+                <p>
+                    Atesto estar ciente das regras do torneio e garanto a veracidade das informações aqui prestadas.
+                </p>
+            </section>
+
+            <footer>
+                <div class="linha"></div>
+                <p>Assinatura do(a) Responsável</p>
+            </footer>
+        </div>
+        
+        <div class="acoes">
+            <button id="btnVoltar" class="btn-acao">Voltar para o Início</button>
+            <button onclick="window.print()" class="btn-acao btn-imprimir">Imprimir Documento</button>
+        </div>
+    </article>
+
+</body>
+</html>
