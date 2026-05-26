@@ -41,54 +41,22 @@ app.use((req, res, next) => {
     next();
 });
 
-app.post('/enviarImagemAlemDeNotas', upload.single('foto'), function (req, res) {
-
-    let ra = req.body.ra;
-    let nome = req.body.nome;
-    let nota1 = parseFloat(req.body.nota1);
-    let nota2 = parseFloat(req.body.nota2);
-    let nota3 = parseFloat(req.body.nota3);
-    let nota4 = parseFloat(req.body.nota4);
+app.post('/enviarImagemAlemDeNotas', (req, res) => {
+    
+    let nota1 = parseFloat(document.getElementById(inputNOTA1).value);
+    let nota2 = parseFloat(document.getElementById(inputNOTA2).value);
+    let nota3 = parseFloat(document.getElementById(inputNOTA3).value);
+    let nota4 = parseFloat(document.getElementById(inputNOTA4).value);
     
     console.log(`As coordenadas recebidas foram: (${nota1}, ${nota2}, ${nota3}, ${nota4})`);
     let h = (nota1 + nota2 + nota3 + nota4)/4;
     res.json({ media: h });
-    if (h < 6.0){
-        situacao = "reprovado";
+    if (h > 6.0){
+        res.json({ media: h + " (reprovado)"});
     }
-    else if (h >= 6.0){
-        situacao = " aprovado";
+    else if (h <= 6.0){
+        res.json({ media: h + " (aprovado)"});
     }
-
-    if(!ra || !nome){
-        return res.status(400).json({
-            erro:'RA e nome são obrigatórios.'
-        });
-    }
-    console.log('___________________________________________');
-    console.log('Aluno:',nome);
-    console.log('RA:',ra);
-    console.log('Média:' , h.toFixed(2));
-    console.log('Situação:' , situacao);
-
-    if(req.file) {
-        console.log(
-            'Imagem salva:',
-            req.file.filename
-        );
-    }
-    res.json({
-        mensagem: 'Dados processados com sucesso!',
-        nomeArquivo: req.file
-            ? req.file.filename
-            : null,
-        aluno: {
-            ra: ra,
-            nome: nome,
-            media: h.toFixed(2),
-            situacao: situacao
-        }
-    });
 });
 
 // --- ROTA ANTERIOR (Mantida para exemplo) ---
