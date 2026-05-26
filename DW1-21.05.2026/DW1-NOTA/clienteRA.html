@@ -133,8 +133,8 @@
         async function enviarImagemAlemDeNotas() {
             const enderecoServidor = document.getElementById('enderecoServidorInput').value;
             const porta = document.getElementById('inputPorta').value;
-            const inputImagem = document.getElementById('inputImagem');
-            const respostaDiv = document.getElementById("respostaImagem");
+            const inputImagemFoto = document.getElementById('inputImagemFoto');
+            const respostaNota = document.getElementById("respostaNota");
 
             const ra = parseInt(document.getElementById('inputRA').value);
             const nome = document.getElementById('inputNOME').innerHTML;
@@ -145,18 +145,18 @@
             const imagem = document.getElementById('inputImagemFoto');  
 
 
-            const arquivoImagem = inputImagem.files[0];
+            const arquivoImagem = inputImagemFoto.files[0];
             const formData = new FormData();
             formData.append('foto', arquivoImagem);
 
             if(nota1 === 0 || nota2 === 0 ||nota3 === 0 ||nota4 === 0){
-                respostaDiv.className = "resposta aviso"; // Amarelo
-                respostaDiv.innerHTML = "Por favor, insira valores acima de 0.";
+                respostaNota.className = "resposta aviso"; // Amarelo
+                respostaNota.innerHTML = "Por favor, insira valores acima de 0.";
                 return;
             }
                 try {
-                respostaDiv.className = "resposta";
-                respostaDiv.innerHTML = "Enviando arquivo...";
+                respostaNota.className = "resposta";
+                respostaNota.innerHTML = "Enviando arquivo...";
 
                 const response = await fetch(`http://${enderecoServidor}:${porta}/enviar-imagem`, {
                     method: 'POST',
@@ -170,14 +170,14 @@
                 const data = await response.json();
 
                 // Define a classe de sucesso (Verde) e atualiza o texto permanentemente
-                respostaDiv.className = "resposta sucesso";
-                respostaDiv.innerHTML = `<b>${data.mensagem}</b><br>Salvo no servidor como: <i>${data.nomeArquivo}</i>`;
+                respostaNota.className = "resposta sucesso";
+                respostaNota.innerHTML = `<b>${data.mensagem}</b><br>Salvo no servidor como: <i>${data.nomeArquivo}</i>`;
 
             } catch (error) {
                 console.error('Erro:', error);
                 // Define a classe de erro (Vermelho)
-                respostaDiv.className = "resposta erro";
-                respostaDiv.innerHTML = "Erro de comunicação: Não foi possível salvar a imagem no servidor.";
+                respostaNota.className = "resposta erro";
+                respostaNota.innerHTML = "Erro de comunicação: Não foi possível salvar a imagem no servidor.";
             }
             
         } 
