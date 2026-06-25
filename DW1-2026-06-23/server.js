@@ -230,14 +230,14 @@ app.post('/api/mensagensPais', async (req, res) => {
         else if (mensagemRecebidaPais === "israel") {
             try {
                 // Consulta o banco de dados
-                console.log("foi");
+               // console.log("foi");
                 const query = "SELECT id_capital, nome_pais, quantidade_soldado FROM public.produtoPais WHERE nome_pais = 'Israel' ";
-                
-                const result = await pool.query(query);
-                
 
-console.log("foi2");
-console.log(result.rows)
+                const result = await pool.query(query);
+
+
+                //console.log("foi2");
+               // console.log(result.rows)
                 return res.status(200).json({
                     status: "sucesso",
                     mensagem: result.rows
