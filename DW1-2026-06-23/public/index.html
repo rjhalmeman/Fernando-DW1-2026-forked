@@ -9,7 +9,8 @@
 </head>
 
 <body>
-    <h1>🫡​Ligação de conflitos(Comandos do comandante)🫡​</h1>
+    <h1>🫡​Ligação de conflitos(Comandos do comandante)🫡</h1>
+    <header>Fernando Moresqui Medeiros</header>
 
     <div class="container">
         <h3>Envio de ordens</h3>
@@ -46,196 +47,202 @@
                 as armas repostas</p>
             <p>• Digite <span class="codigoTropAdd">adicionar tropa</span> → Ele vê quantas tropas foi aprovado para o
                 exército</p>
-</div>
+        </div>
 
-            <div class="contraQuem">
-                <p><strong>💡 Adições que o comandante entende 💡</strong></p>
-                <p>• Digite <span class="codigoAtacar">atacar</span> → Ele responde "Coloque o nome do país"</p>
-                <p>• Digite <span class="codigoPaisQual">todos</span> → Ela responde "Tá doido?"
-                </div>
+        <div class="contraQuem">
+            <p><strong>💡 Adições que o comandante entende 💡</strong></p>
+            <p>• Digite <span class="codigoAtacar">atacar</span> → Ele responde "Coloque o nome do país"</p>
+            <p>Opções:</p>
+                <p>-Digite <span class="codigoAtacar">israel</span> para selecionar Israel</p>
+                <p>-Digite <span class="codigoAtacar">e.u.a</span> para selecionar E.U.A</p>
+                <p>-Digite <span class="codigoAtacar">argentina</span> para selecionar argentina</p>
+                <p>-Digite <span class="codigoAtacar">brasil</span> para selecionar Brasil</p>
+            <p>• Digite <span class="codigoPaisQual">todos</span> → Ela responde "Tá doido?"</p>
+        </div>
 
-                <div id="resultadoMensagem" class="resultado">💭 Aguardando sua ordem...</div>
-            </div>
+        <div id="resultadoMensagem" class="resultado">💭 Aguardando sua ordem...</div>
+    </div>
 
+    <footer>Feito por: Fernando Moresqui Medeiros</footer>
 
-            <script>
-                // Configuração do servidor (fácil de entender para iniciantes)
-                const enderecoServidor = 'localhost';
-                const porta = '3001';
+    <script>
+        // Configuração do servidor (fácil de entender para iniciantes)
+        const enderecoServidor = 'localhost';
+        const porta = '3001';
 
-                // Função para enviar mensagem via POST
-                async function enviarMensagem() {
-                    // 1. Pegar o que o usuário digitou
-                    const mensagem = document.getElementById('inputMensagem').value.trim();
+        // Função para enviar mensagem via POST
+        async function enviarMensagem() {
+            // 1. Pegar o que o usuário digitou
+            const mensagem = document.getElementById('inputMensagem').value.trim();
 
-                    // 2. Verificar se não está vazio
-                    if (!mensagem) {
-                        document.getElementById('resultadoMensagem').innerHTML = '<div class="erro">❌ Faça com que a comunicação tenha utilidade!</div>';
-                        return;
-                    }
+            // 2. Verificar se não está vazio
+            if (!mensagem) {
+                document.getElementById('resultadoMensagem').innerHTML = '<div class="erro">❌ Faça com que a comunicação tenha utilidade!</div>';
+                return;
+            }
 
-                    // 3. Montar o pacote (JSON) que será enviado
-                    const bilheteJSON = {
-                        mensagem: mensagem  // O campo "mensagem" é o que o servidor espera
-                    };
+            // 3. Montar o pacote (JSON) que será enviado
+            const bilheteJSON = {
+                mensagem: mensagem  // O campo "mensagem" é o que o servidor espera
+            };
 
-                    try {
-                        // 4. Enviar o bilhete para a Servidorina usando POST
-                        const resposta = await fetch(`http://${enderecoServidor}:${porta}/api/mensagens`, {
-                            method: 'POST',              // Método POST (enviar dados)
-                            headers: {
-                                'Content-Type': 'application/json',  // Diz que estamos enviando JSON
-                            },
-                            body: JSON.stringify(bilheteJSON)       // Converte o objeto para texto JSON
-                        });
-
-                        // 5. Converter a resposta da Servidorina para JSON
-                        const dados = await resposta.json();
-
-                        // 6. Mostrar a resposta na tela
-                        if (dados.status === "sucesso") {
-                            // Formata a resposta para mostrar quebras de linha
-                            const mensagemFormatada = dados.mensagem.replace(/\n/g, '<br>');
-                            document.getElementById('resultadoMensagem').innerHTML = `
-                        <div class="sucesso">
-                            <strong>✅ O comandante respondeu:</strong><br>
-                            ${mensagemFormatada}
-                        </div>
-                    `;
-                        } else {
-                            document.getElementById('resultadoMensagem').innerHTML = `<div class="erro">❌ ${dados.mensagem}</div>`;
-                        }
-
-                        // 7. Limpar o campo de entrada
-                        document.getElementById('inputMensagem').value = '';
-
-                    } catch (erro) {
-                        // 8. Se algo deu errado na comunicação
-                        console.error('Erro:', erro);
-                        document.getElementById('resultadoMensagem').innerHTML = '<div class="erro">❌ A comunicação foi interceptada pelo país inimigo.</div>';
-                    }
-                }
-
-                // Função para enviar mensagem via POST
-                async function enviarMensagemAdd() {
-                    // 1. Pegar o que o usuário digitou
-                    const mensagem = document.getElementById('inputMensagem').value.trim();
-
-                    // 2. Verificar se não está vazio
-                    if (!mensagem) {
-                        document.getElementById('resultadoMensagem').innerHTML = '<div class="erro">❌ Faça com que a comunicação tenha utilidade!</div>';
-                        return;
-                    }
-
-                    // 3. Montar o pacote (JSON) que será enviado
-                    const bilheteJSON = {
-                        mensagem: mensagem  // O campo "mensagem" é o que o servidor espera
-                    };
-
-                    try {
-                        // 4. Enviar o bilhete para a Servidorina usando POST
-                        const resposta = await fetch(`http://${enderecoServidor}:${porta}/api/mensagensAdd`, {
-                            method: 'POST',              // Método POST (enviar dados)
-                            headers: {
-                                'Content-Type': 'application/json',  // Diz que estamos enviando JSON
-                            },
-                            body: JSON.stringify(bilheteJSON)       // Converte o objeto para texto JSON
-                        });
-
-                        // 5. Converter a resposta da Servidorina para JSON
-                        const dados = await resposta.json();
-
-                        // 6. Mostrar a resposta na tela
-                        if (dados.status === "sucesso") {
-                            // Formata a resposta para mostrar quebras de linha
-                            const mensagemFormatada = dados.mensagem.replace(/\n/g, '<br>');
-                            document.getElementById('resultadoMensagem').innerHTML = `
-                        <div class="sucesso">
-                            <strong>✅ O comandante respondeu:</strong><br>
-                            ${mensagemFormatada}
-                        </div>
-                    `;
-                        } else {
-                            document.getElementById('resultadoMensagem').innerHTML = `<div class="erro">❌ ${dados.mensagem}</div>`;
-                        }
-
-                        // 7. Limpar o campo de entrada
-                        document.getElementById('inputMensagem').value = '';
-
-                    } catch (erro) {
-                        // 8. Se algo deu errado na comunicação
-                        console.error('Erro:', erro);
-                        document.getElementById('resultadoMensagem').innerHTML = '<div class="erro">❌ A comunicação foi interceptada pelo país inimigo.</div>';
-                    }
-                }
-
-                // Permitir enviar pressionando Enter
-                document.getElementById('inputMensagem').addEventListener('keypress', function (event) {
-                    if (event.key === 'Enter') {
-                        enviarMensagem();
-                    }
+            try {
+                // 4. Enviar o bilhete para a Servidorina usando POST
+                const resposta = await fetch(`http://${enderecoServidor}:${porta}/api/mensagens`, {
+                    method: 'POST',              // Método POST (enviar dados)
+                    headers: {
+                        'Content-Type': 'application/json',  // Diz que estamos enviando JSON
+                    },
+                    body: JSON.stringify(bilheteJSON)       // Converte o objeto para texto JSON
                 });
 
-                // Função para enviar mensagem via POST
-                async function enviarMensagemPais() {
-                    // 1. Pegar o que o usuário digitou
-                    const mensagem = document.getElementById('inputMensagem').value.trim();
+                // 5. Converter a resposta da Servidorina para JSON
+                const dados = await resposta.json();
 
-                    // 2. Verificar se não está vazio
-                    if (!mensagem) {
-                        document.getElementById('resultadoMensagem').innerHTML = '<div class="erro">❌ Faça com que a comunicação tenha utilidade!</div>';
-                        return;
-                    }
-
-                    // 3. Montar o pacote (JSON) que será enviado
-                    const bilheteJSON = {
-                        mensagem: mensagem  // O campo "mensagem" é o que o servidor espera
-                    };
-
-                    try {
-                        // 4. Enviar o bilhete para a Servidorina usando POST
-                        const resposta = await fetch(`http://${enderecoServidor}:${porta}/api/mensagensPais`, {
-                            method: 'POST',              // Método POST (enviar dados)
-                            headers: {
-                                'Content-Type': 'application/json',  // Diz que estamos enviando JSON
-                            },
-                            body: JSON.stringify(bilheteJSON)       // Converte o objeto para texto JSON
-                        });
-
-                        // 5. Converter a resposta da Servidorina para JSON
-                        const dados = await resposta.json();
-
-                        // 6. Mostrar a resposta na tela
-                        if (dados.status === "sucesso") {
-                            // Formata a resposta para mostrar quebras de linha
-                            const mensagemFormatada = dados.mensagem.replace(/\n/g, '<br>');
-                            document.getElementById('resultadoMensagem').innerHTML = `
+                // 6. Mostrar a resposta na tela
+                if (dados.status === "sucesso") {
+                    // Formata a resposta para mostrar quebras de linha
+                    const mensagemFormatada = dados.mensagem.replace(/\n/g, '<br>');
+                    document.getElementById('resultadoMensagem').innerHTML = `
                         <div class="sucesso">
                             <strong>✅ O comandante respondeu:</strong><br>
                             ${mensagemFormatada}
                         </div>
                     `;
-                        } else {
-                            document.getElementById('resultadoMensagem').innerHTML = `<div class="erro">❌ ${dados.mensagem}</div>`;
-                        }
-
-                        // 7. Limpar o campo de entrada
-                        document.getElementById('inputMensagem').value = '';
-
-                    } catch (erro) {
-                        // 8. Se algo deu errado na comunicação
-                        console.error('Erro:', erro);
-                        document.getElementById('resultadoMensagem').innerHTML = '<div class="erro">❌ A comunicação foi interceptada pelo país inimigo.</div>';
-                    }
+                } else {
+                    document.getElementById('resultadoMensagem').innerHTML = `<div class="erro">❌ ${dados.mensagem}</div>`;
                 }
 
-                // Permitir enviar pressionando Enter
-                document.getElementById('inputMensagem').addEventListener('keypress', function (event) {
-                    if (event.key === 'Enter') {
-                        enviarMensagem();
-                    }
+                // 7. Limpar o campo de entrada
+                document.getElementById('inputMensagem').value = '';
+
+            } catch (erro) {
+                // 8. Se algo deu errado na comunicação
+                console.error('Erro:', erro);
+                document.getElementById('resultadoMensagem').innerHTML = '<div class="erro">❌ A comunicação foi interceptada pelo país inimigo.</div>';
+            }
+        }
+
+        // Função para enviar mensagem via POST
+        async function enviarMensagemAdd() {
+            // 1. Pegar o que o usuário digitou
+            const mensagem = document.getElementById('inputMensagem').value.trim();
+
+            // 2. Verificar se não está vazio
+            if (!mensagem) {
+                document.getElementById('resultadoMensagem').innerHTML = '<div class="erro">❌ Faça com que a comunicação tenha utilidade!</div>';
+                return;
+            }
+
+            // 3. Montar o pacote (JSON) que será enviado
+            const bilheteJSON = {
+                mensagem: mensagem  // O campo "mensagem" é o que o servidor espera
+            };
+
+            try {
+                // 4. Enviar o bilhete para a Servidorina usando POST
+                const resposta = await fetch(`http://${enderecoServidor}:${porta}/api/mensagensAdd`, {
+                    method: 'POST',              // Método POST (enviar dados)
+                    headers: {
+                        'Content-Type': 'application/json',  // Diz que estamos enviando JSON
+                    },
+                    body: JSON.stringify(bilheteJSON)       // Converte o objeto para texto JSON
                 });
-            </script>
+
+                // 5. Converter a resposta da Servidorina para JSON
+                const dados = await resposta.json();
+
+                // 6. Mostrar a resposta na tela
+                if (dados.status === "sucesso") {
+                    // Formata a resposta para mostrar quebras de linha
+                    const mensagemFormatada = dados.mensagem.replace(/\n/g, '<br>');
+                    document.getElementById('resultadoMensagem').innerHTML = `
+                        <div class="sucesso">
+                            <strong>✅ O comandante respondeu:</strong><br>
+                            ${mensagemFormatada}
+                        </div>
+                    `;
+                } else {
+                    document.getElementById('resultadoMensagem').innerHTML = `<div class="erro">❌ ${dados.mensagem}</div>`;
+                }
+
+                // 7. Limpar o campo de entrada
+                document.getElementById('inputMensagem').value = '';
+
+            } catch (erro) {
+                // 8. Se algo deu errado na comunicação
+                console.error('Erro:', erro);
+                document.getElementById('resultadoMensagem').innerHTML = '<div class="erro">❌ A comunicação foi interceptada pelo país inimigo.</div>';
+            }
+        }
+
+        // Permitir enviar pressionando Enter
+        document.getElementById('inputMensagem').addEventListener('keypress', function (event) {
+            if (event.key === 'Enter') {
+                enviarMensagem();
+            }
+        });
+
+        // Função para enviar mensagem via POST
+        async function enviarMensagemPais() {
+            // 1. Pegar o que o usuário digitou
+            const mensagem = document.getElementById('inputMensagem').value.trim();
+
+            // 2. Verificar se não está vazio
+            if (!mensagem) {
+                document.getElementById('resultadoMensagem').innerHTML = '<div class="erro">❌ Faça com que a comunicação tenha utilidade!</div>';
+                return;
+            }
+
+            // 3. Montar o pacote (JSON) que será enviado
+            const bilheteJSON = {
+                mensagem: mensagem  // O campo "mensagem" é o que o servidor espera
+            };
+
+            try {
+                // 4. Enviar o bilhete para a Servidorina usando POST
+                const resposta = await fetch(`http://${enderecoServidor}:${porta}/api/mensagensPais`, {
+                    method: 'POST',              // Método POST (enviar dados)
+                    headers: {
+                        'Content-Type': 'application/json',  // Diz que estamos enviando JSON
+                    },
+                    body: JSON.stringify(bilheteJSON)       // Converte o objeto para texto JSON
+                });
+
+                // 5. Converter a resposta da Servidorina para JSON
+                const dados = await resposta.json();
+
+                // 6. Mostrar a resposta na tela
+                if (dados.status === "sucesso") {
+                    // Formata a resposta para mostrar quebras de linha
+                    const mensagemFormatada = JSON.stringify();
+                    document.getElementById('resultadoMensagem').innerHTML = `
+                        <div class="sucesso">
+                            <strong>✅ O comandante respondeu:</strong><br>
+                            ${mensagemFormatada}
+                        </div>
+                    `;
+                } else {
+                    document.getElementById('resultadoMensagem').innerHTML = `<div class="erro">❌ ${dados.mensagem}</div>`;
+                }
+
+                // 7. Limpar o campo de entrada
+                document.getElementById('inputMensagem').value = '';
+
+            } catch (erro) {
+                // 8. Se algo deu errado na comunicação
+                console.error('Erro:', erro);
+                document.getElementById('resultadoMensagem').innerHTML = '<div class="erro">❌ A comunicação foi interceptada pelo país inimigo.</div>';
+            }
+        }
+
+        // Permitir enviar pressionando Enter
+        document.getElementById('inputMensagem').addEventListener('keypress', function (event) {
+            if (event.key === 'Enter') {
+                enviarMensagem();
+            }
+        });
+    </script>
 </body>
 
 </html>

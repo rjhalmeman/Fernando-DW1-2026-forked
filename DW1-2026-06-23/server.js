@@ -130,7 +130,7 @@ app.post('/api/mensagens', async (req, res) => {
             }
         }
 
-        // REGRA ?: Se for "bolo" - consulta o estoque e retorna o que precisa ser reposto
+        // REGRA ?: Se for "armamento" - consulta o estoque e retorna o que precisa ser reposto
         else if (mensagemRecebida === "armamento") {
             try {
                 // Consulta o banco de dados
@@ -154,13 +154,13 @@ app.post('/api/mensagens', async (req, res) => {
             }
         }
 
-        // REGRA ?: Se for "minimo" - consulta o estoque e retorna o que precisa ser reposto
+        // REGRA ?: Se for "tropa" - consulta o estoque e retorna o que precisa ser reposto
         else if (mensagemRecebida === "tropa") {
             try {
                 // Consulta o banco de dados
                 const query = "SELECT quantidade_produto FROM public.produto WHERE nome_produto = 'Tropas' ";
                 const result = await pool.query(query);
-               
+
 
 
 
@@ -211,7 +211,7 @@ app.post('/api/mensagensPais', async (req, res) => {
         const dataHora = `${agora.toLocaleDateString('pt-BR')} ${agora.toLocaleTimeString('pt-BR')}`;
         console.log(`Comando recebido: ${mensagemRecebidaPais} - ${dataHora}`);
 
-        // REGRA 1: Se for "comandante"
+        // REGRA 1: Se for "atacar"
         if (mensagemRecebidaPais === "atacar") {
             return res.status(200).json({
                 status: "sucesso",
@@ -219,12 +219,37 @@ app.post('/api/mensagensPais', async (req, res) => {
             });
         }
 
-        // REGRA 2: Se for "chegou"
+        // REGRA ?: Se for "todos"
         else if (mensagemRecebidaPais === "todos") {
             return res.status(200).json({
                 status: "sucesso",
                 mensagem: "Tá doido?"
             });
+        }
+
+        else if (mensagemRecebidaPais === "israel") {
+            try {
+                // Consulta o banco de dados
+                console.log("foi");
+                const query = "SELECT id_capital, nome_pais, quantidade_soldado FROM public.produtoPais WHERE nome_pais = 'Israel' ";
+                
+                const result = await pool.query(query);
+                
+
+console.log("foi2");
+console.log(result.rows)
+                return res.status(200).json({
+                    status: "sucesso",
+                    mensagem: result.rows
+                });
+
+            } catch (dbError) {
+                console.error('Erro no banco de dados:', dbError);
+                return res.status(500).json({
+                    status: "erro",
+                    mensagem: 'Erro ao consultar as tropas'
+                });
+            }
         }
 
         // REGRA 3: Qualquer outra palavra
