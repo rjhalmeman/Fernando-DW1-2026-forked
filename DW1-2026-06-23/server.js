@@ -266,6 +266,124 @@ app.post('/api/mensagensPais', async (req, res) => {
     }
 });
 
+       else if (mensagemRecebidaPais === "e.u.a") {
+            try {
+                // Consulta o banco de dados
+               // console.log("foi");
+                const query = "SELECT id_capital, nome_pais, quantidade_soldado FROM public.produtoPais WHERE nome_pais = 'E.U.A' ";
+
+                const result = await pool.query(query);
+
+
+                //console.log("foi2");
+               // console.log(result.rows)
+                return res.status(200).json({
+                    status: "sucesso",
+                    mensagem: result.rows
+                });
+
+            } catch (dbError) {
+                console.error('Erro no banco de dados:', dbError);
+                return res.status(500).json({
+                    status: "erro",
+                    mensagem: 'Erro ao consultar as tropas'
+                });
+            }
+        }
+
+        // REGRA 3: Qualquer outra palavra
+        else {
+            return res.status(200).json({
+                status: "sucesso",
+                mensagem: "mensagem não catalogada"
+            });
+        }
+
+    } catch (error) {
+        console.error('Erro ao processar mensagem:', error);
+        res.status(500).json({ status: "erro", mensagem: 'Erro interno' });
+    }
+});
+
+else if (mensagemRecebidaPais === "argentina") {
+            try {
+                // Consulta o banco de dados
+               // console.log("foi");
+                const query = "SELECT id_capital, nome_pais, quantidade_soldado FROM public.produtoPais WHERE nome_pais = 'Argentina' ";
+
+                const result = await pool.query(query);
+
+
+                //console.log("foi2");
+               // console.log(result.rows)
+                return res.status(200).json({
+                    status: "sucesso",
+                    mensagem: result.rows
+                });
+
+            } catch (dbError) {
+                console.error('Erro no banco de dados:', dbError);
+                return res.status(500).json({
+                    status: "erro",
+                    mensagem: 'Erro ao consultar as tropas'
+                });
+            }
+        }
+
+        // REGRA 3: Qualquer outra palavra
+        else {
+            return res.status(200).json({
+                status: "sucesso",
+                mensagem: "mensagem não catalogada"
+            });
+        }
+
+    } catch (error) {
+        console.error('Erro ao processar mensagem:', error);
+        res.status(500).json({ status: "erro", mensagem: 'Erro interno' });
+    }
+});
+
+else if (mensagemRecebidaPais === "brasil") {
+            try {
+                // Consulta o banco de dados
+               // console.log("foi");
+                const query = "SELECT id_capital, nome_pais, quantidade_soldado FROM public.produtoPais WHERE nome_pais = 'Brasil' ";
+
+                const result = await pool.query(query);
+
+
+                //console.log("foi2");
+               // console.log(result.rows)
+                return res.status(200).json({
+                    status: "sucesso",
+                    mensagem: result.rows
+                });
+
+            } catch (dbError) {
+                console.error('Erro no banco de dados:', dbError);
+                return res.status(500).json({
+                    status: "erro",
+                    mensagem: 'Erro ao consultar as tropas'
+                });
+            }
+        }
+
+        // REGRA 3: Qualquer outra palavra
+        else {
+            return res.status(200).json({
+                status: "sucesso",
+                mensagem: "mensagem não catalogada"
+            });
+        }
+
+    } catch (error) {
+        console.error('Erro ao processar mensagem:', error);
+        res.status(500).json({ status: "erro", mensagem: 'Erro interno' });
+    }
+});
+
+
 app.listen(port, '0.0.0.0', () => {
     console.log(`Soldados na porta${port}`);
     console.log(`Rota disponível:`);
